@@ -33,5 +33,12 @@ export const productType = defineType({
                 hotspot: true,
             },
         }),
+        defineField({
+            name: "stock",
+            type: "number",
+            title: "Stock",
+            description: "Number of items available in stock",
+            validation: (Rule) => Rule.required().min(0),
+        }),
     ],
 })

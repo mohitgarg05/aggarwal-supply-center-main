@@ -3,12 +3,10 @@
 import { Minus, Plus } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useAuth } from "@/context/AuthContext";
 import { urlFor } from "@/sanity/lib/image";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
-  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     // Retrieve the cart from localStorage
@@ -78,14 +76,6 @@ function Cart() {
       .filter((item) => item.quantity > 0); // Remove items with quantity 0
     saveCartToLocalStorage(updatedCart);
   };
-
-  if (!isLoggedIn) {
-    return (
-      <div className="w-full h-screen grid place-items-center p-4">
-        <p>Please log in to access this page.</p>
-      </div>
-    );
-  }
 
   return (
     <div className="py-10 bg-gray-50">

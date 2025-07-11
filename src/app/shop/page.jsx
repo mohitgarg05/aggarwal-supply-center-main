@@ -11,9 +11,10 @@ function Shop() {
             try {
                 const query = `*[_type == "product"]{
                     _id,
-                     name,
+                    name,
                     discountedPrice,
                     originalPrice,
+                    stock,
                     "imageUrl": image.asset->url
                 }`;
                 const result = await client.fetch(query);
@@ -38,7 +39,7 @@ function Shop() {
             <div className='px-4 lg:px-20 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
                 {
                     products.map((product) => (
-                        <ProductCard key={product._id} id={product._id} img={product.imageUrl} name={product.name} originalPrice={product.originalPrice} discountedPrice={product.discountedPrice} />
+                        <ProductCard key={product._id} id={product._id} img={product.imageUrl} name={product.name} originalPrice={product.originalPrice} discountedPrice={product.discountedPrice} stock={product.stock} />
                     ))
                 }
 
